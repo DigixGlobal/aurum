@@ -5,22 +5,16 @@ require 'colorize'
 require 'logger'
 
 
-if ARGV.length < 2
-    puts "Usage:\n\t#{File.basename($0)} source_dir destination_dir"
+if ARGV.length < 1
+    puts "Usage:\n\t#{File.basename($0)} source_dir"
 else
     logger = Logger.new(STDOUT)
     source_dir = ARGV[0]
-    target_dir = ARGV[1]
     if Dir.exists?(source_dir)
-        aur = Aurum::Project.new(source_dir, target_dir)
-        begin
-            aur.process
-            logger.info("Project was successfully processed.  Solidity source files have been placed in #{target_dir}".green)
-        rescue RuntimeError => e
-            logger.error(e.message.red)
-        end
+      Aurum::Configuration.new(source_dir).process
+      logger.info("Project successfully processed".blue)
     else
-        logger.error("Project source directory does not exist.".red)
+      logger.error("Project source directory does not exist.".red)
     end
 end
 

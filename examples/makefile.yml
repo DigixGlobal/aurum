@@ -1,0 +1,36 @@
+---
+source_dir: /Users/aeufemio/projects/digixglobal/digixgold/src
+target_dir: /Users/aeufemio/projects/digixglobal/digixgold/contracts
+contracts: 
+- name: Auditor
+  includes: 
+  - Participant
+  requires: 
+  - AuditorRegistry
+- name: AuditorRegistry
+  includes: 
+  - ParticipantRegistry
+  requires:
+- name: CustodianRegistry
+  includes:
+  - ParticipantRegistry
+  requires:
+- name: Gold
+  includes: 
+  - Asset
+  requires:
+  - GoldRegistry
+- name: GoldRegistry
+  requires:
+  - AssetRegistry
+  includes:
+- name: GoldVoucher
+  includes:
+  requires:
+  - Gold
+- name: Refundable
+  includes:
+  requires:
+- name: Refunder
+  includes:
+  requires:

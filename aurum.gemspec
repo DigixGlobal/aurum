@@ -34,4 +34,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "activesupport", "~> 4.2"
   spec.add_dependency "pry", "~> 0.10"
   spec.add_dependency "colorize", "~> 0.7"
+  spec.add_dependency "ruby-terminfo", "~> 0.1"
 end
